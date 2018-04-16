@@ -4,7 +4,7 @@ const url = "https://www.youtube.com/feeds/videos.xml?channel_id=UC6MLHVqrpZqbeg
 let Parser = require('rss-parser');
 let parser = new Parser();
 module.exports.run = async (bot, message, args) => {
-    if (message.channel.id != 434789368448942080) return;
+    if (message.channel.id != 435455589418532865) return;
     if (message.author.id != 259324372882292736) return;
     function rss() {
         (async () => {
@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
             let item = feed.items[0];
             
             if (JSON.parse(fs.readFileSync("./videos.json"))['title'] == item.title) return;
-            channel = bot.channels.find("id", "434789368448942080");
+            channel = bot.channels.find("id", "435455589418532865");
             channel.send(`העלאתי סרטון חדש! \n אתם מוזמנים לבוא לצפות ולהשאיר תגובה ולייק! \n \n ${item.link} \n \n <@&350378591697240066>`);
             fs.writeFile('./videos.json', JSON.stringify({title: item.title}), (err) => {
                 if (err) console.log(err);

@@ -47,8 +47,8 @@ bot.on("ready", async() => {
             let item = feed.items[0];
 
             if (JSON.parse(fs.readFileSync("./videos.json"))['title'] == item.title) return;
-            channel = bot.channels.find("id", "434789368448942080");
-            channel.send(`העלאתי סרטון חדש! \n אתם מוזמנים לבוא לצפות ולהשאיר תגובה ולייק! \n \n ${item.link} \n \n <@&432205265140449290>`);
+            channel = bot.channels.find("id", "435455589418532865");
+            channel.send(`העלאתי סרטון חדש! \n אתם מוזמנים לבוא לצפות ולהשאיר תגובה ולייק! \n \n ${item.link} \n \n <@&350378591697240066>`);
             fs.writeFile('./videos.json', JSON.stringify({title: item.title}), (err) => {
                 if (err) console.log(err);
             });
