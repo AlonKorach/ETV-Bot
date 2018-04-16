@@ -5,7 +5,7 @@ let Parser = require('rss-parser');
 let parser = new Parser();
 module.exports.run = async (bot, message, args) => {
     if (message.channel.id != 434789368448942080) return;
-
+    if (message.author.id != 259324372882292736) return;
     function rss() {
         (async () => {
             let feed = await parser.parseURL(url);
@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
             
             if (JSON.parse(fs.readFileSync("./videos.json"))['title'] == item.title) return;
             channel = bot.channels.find("id", "434789368448942080");
-            channel.send(`העלאתי סרטון חדש! \n אתם מוזמנים לבוא לצפות ולהשאיר תגובה ולייק! \n \n ${item.link} \n \n <@&432205265140449290>`);
+            channel.send(`העלאתי סרטון חדש! \n אתם מוזמנים לבוא לצפות ולהשאיר תגובה ולייק! \n \n ${item.link} \n \n <@&350378591697240066>`);
             fs.writeFile('./videos.json', JSON.stringify({title: item.title}), (err) => {
                 if (err) console.log(err);
             });
