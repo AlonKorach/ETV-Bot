@@ -54,6 +54,6 @@ bot.on("ready", async() => {
             });
         })()
     }
-    setInterval(rss, 6000);
+    setInterval(rss, 86400000);
 })
 bot.login(botconfig.token);
