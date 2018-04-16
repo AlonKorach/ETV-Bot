@@ -4,30 +4,22 @@ const url = "https://www.youtube.com/feeds/videos.xml?channel_id=UC6MLHVqrpZqbeg
 let Parser = require('rss-parser');
 let parser = new Parser();
 module.exports.run = async (bot, message, args) => {
+    if (message.channel.id != 434789368448942080) return;
+
     function rss() {
         (async () => {
             let feed = await parser.parseURL(url);
             let item = feed.items[0];
-            bot.channel.send("123");
-
-            if (JSON.parse(fs.readFileSync("./videos.json"))['title'] == item.title) return console.log('1');
-            ;
-    
-            // message.channel.send(`העלאתי סרטון חדש! \n אתם מוזמנים לבוא לצפות ולהשאיר תגובה ולייק! \n \n ${item.link} \n \n @:tv:טלוויזיות:tv:`);
-            try {
-                // bot.guilds.channels.find("yt").send(`העלאתי סרטון חדש! \n אתם מוזמנים לבוא לצפות ולהשאיר תגובה ולייק! \n \n ${item.link} \n \n @:tv:טלוויזיות:tv:`);
-                // bot.sendMessage("123", "434789368448942080");
-            //    bot.message.sendMessage(`העלאתי סרטון חדש! \n אתם מוזמנים לבוא לצפות ולהשאיר תגובה ולייק! \n \n ${item.link} \n \n @:tv:טלוויזיות:tv:`, 'yt');
-
-            } catch (e){
-                console.log(e);                
-            }
+            
+            if (JSON.parse(fs.readFileSync("./videos.json"))['title'] == item.title) return;
+            channel = bot.channels.find("id", "434789368448942080");
+            channel.send(`העלאתי סרטון חדש! \n אתם מוזמנים לבוא לצפות ולהשאיר תגובה ולייק! \n \n ${item.link} \n \n <@&432205265140449290>`);
             fs.writeFile('./videos.json', JSON.stringify({title: item.title}), (err) => {
                 if (err) console.log(err);
             });
         })()
     }
-    setInterval(rss, 6000);
+    rss();
     message.delete().catch(O_o=>{});
 } 
 
